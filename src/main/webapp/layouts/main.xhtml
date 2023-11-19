@@ -1,0 +1,27 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//ES" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets" xml:lang="es">
+
+<h:head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>App Salón</title>
+    <h:outputStylesheet name="css/app.css" />
+    <h:outputStylesheet name="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700;900&amp;display=swap" />
+</h:head>
+
+<h:body>
+    <main class="contenedor-app">
+        <div class="imagen">
+            <h:graphicImage value="/resources/img/1.jpg" class="imagen" />
+        </div>
+        <div class="app">
+            <ui:insert name="content" />
+        </div>
+
+    </main>
+</h:body>
+
+</html>

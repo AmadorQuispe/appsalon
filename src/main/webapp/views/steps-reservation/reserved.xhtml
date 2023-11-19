@@ -1,0 +1,41 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//ES" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets" xml:lang="es">
+
+<div id="paso-2" class="seccion mostrar">
+
+    <h2>Tus Datos y Cita</h2>
+    <p class="text-center">Coloca tus datos y fecha de tu cita</p>
+
+
+    <div class="formulario">
+
+        <div class="campo">
+            <h:outputLabel value="Nombres" for="names" />
+            <h:inputText id="names" value="#{authBean.userFullName}">
+                <f:passThroughAttribute name="readonly" value="true" />
+            </h:inputText>
+        </div>
+
+        <div class="campo">
+            <h:outputLabel value="Fecha" for="reservedDate" />
+            <h:inputText id="reservedDate" value="#{wizardBean.reservedDate}">
+                <f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
+                <f:passThroughAttribute name="type" value="date" />
+            </h:inputText>
+        </div>
+
+        <div class="campo">
+            <h:outputLabel value="Hora" for="reservedTime" />
+            <h:inputText id="reservedTime" value="#{wizardBean.reservedTime}">
+
+                <f:passThroughAttribute name="type" value="time" />
+            </h:inputText>
+        </div>
+
+    </div>
+</div>
+
+</html>

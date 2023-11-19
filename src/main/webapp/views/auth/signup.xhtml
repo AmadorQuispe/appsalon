@@ -1,0 +1,53 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets" template="../../layouts/main.xhtml" xml:lang="es">
+    <ui:define name="content">
+        <h1 class="nombre-pagina">Crear Cuenta</h1>
+        <h:panelGroup layout="block" rendered="#{userController.successRegister}">
+            <div class="alerta exito">Cuenta creada con exito</div>
+            <div class="acciones">
+                <h:link outcome="/views/auth/login" value="Inicia Sesión" style="width: 100%;" />
+            </div>
+        </h:panelGroup>
+        <h:panelGroup layout="block" rendered="#{!userController.successRegister}">
+            <p class="descripcion-pagina">Llena el siguiente el formulario para crear una cuenta</p>
+            <h:form id="formRegister">
+                <div class="campo">
+                    <h:outputLabel value="Nombres" for="firstName" />
+                    <h:inputText id="firstName" value="#{userBean.firstName}" />
+                </div>
+                <h:message for="firstName" class="errors" />
+
+                <div class="campo">
+                    <h:outputLabel value="Apellidos" for="lastName" />
+                    <h:inputText id="lastName" value="#{userBean.lastName}" />
+                </div>
+                <h:message for="lastName" class="errors" />
+
+                <div class="campo">
+                    <h:outputLabel value="Email" for="email" />
+                    <h:inputText id="email" value="#{userBean.email}" />
+                </div>
+                <h:message for="email" class="errors" />
+
+                <div class="campo">
+                    <h:outputLabel value="Teléfono" for="phone" />
+                    <h:inputText id="phone" value="#{userBean.phone}" />
+                </div>
+                <h:message for="phone" class="errors" />
+
+                <div class="campo">
+                    <h:outputLabel value="Contraseña" for="password" />
+                    <h:inputSecret id="password" value="#{userBean.password}" placeholder="Tú contraseña" />
+                </div>
+                <h:message for="password" class="errors" />
+
+                <h:commandButton value="Crear Cuenta" action="#{userController.saveUser}" class="boton" />
+
+            </h:form>
+            <div class="acciones">
+                <h:link outcome="/views/auth/login" value="¿Ya tienes una cuenta? Inicia Sesión" />
+            </div>
+        </h:panelGroup>
+    </ui:define>
+
+</ui:composition>

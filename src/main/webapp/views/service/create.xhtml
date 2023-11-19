@@ -1,0 +1,34 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets" template="../../layouts/main.xhtml" xml:lang="es">
+    <ui:define name="content">
+        <h1 class="nombre-pagina">Servicios</h1>
+        <p class="descripcion-pagina">Administración de Servicios</p>
+        <ui:include src="/template/menu-admin.xhtml" />
+
+        <h:form id="formServiceCreate" class="formulario">
+            <div class="campo">
+                <h:outputLabel value="Nombre Servicio" for="name" />
+                <h:inputText id="name" value="#{serviceBean.name}" />
+            </div>
+            <h:message for="name" class="errors" />
+
+            <div class="campo">
+                <h:outputLabel value="Descripción del servicio" for="description" />
+                <h:inputText id="description" value="#{serviceBean.description}" />
+            </div>
+            <h:message for="description" class="errors" />
+
+            <div class="campo">
+                <h:outputLabel value="Precio del servicio" for="price" />
+                <h:inputText id="price" value="#{serviceBean.price}" />
+            </div>
+            <h:message for="price" class="errors" />
+            <h:inputHidden id="id" value="#{serviceBean.id}" />
+
+            <h:commandButton class="boton" value="Guardar Servicio" actionListener="#{serviceController.saveService}" />
+
+
+        </h:form>
+    </ui:define>
+
+</ui:composition>

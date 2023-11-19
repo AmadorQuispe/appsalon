@@ -1,0 +1,28 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//ES" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets" xml:lang="es">
+
+<div id="paso-3" class="seccion mostrar contenido-resumen">
+
+    <h3>Resumen de servicios</h3>
+
+    <ui:repeat var="s" value="#{wizardBean.services}">
+        <div class="contenedor-servicio">
+            <p>#{s.name}</p>
+            <p><span>Precio</span> S/#{s.price}</p>
+        </div>
+    </ui:repeat>
+
+    <h3>Resumen de Cita</h3>
+    <p><span>Nombre :</span>#{authBean.userFullName}</p>
+    <p><span>Fecha :</span>#{wizardBean.reservedDate}</p>
+    <p><span>Hora :</span>#{wizardBean.reservedTime}</p>
+
+
+    <h:commandButton class="boton" value="Reservar Cita" action="#{reservationController.saveReservation}" />
+
+</div>
+
+</html>

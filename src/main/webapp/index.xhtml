@@ -1,0 +1,24 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:co="http://java.sun.com/jsf/composite/composites"
+    xmlns:f="http://xmlns.jcp.org/jsf/core" template="/layouts/main.xhtml" xml:lang="es">
+
+    <ui:define name="content">
+        <h:messages class="alerta error"></h:messages>
+        <h1 class="nombre-pagina">Crear Nueva Cita</h1>
+        <p class="descripcion-pagina">Elige tus servicios y coloca tus datos</p>
+
+        <ui:include src="/template/menu-admin.xhtml" />
+
+        <div id="app">
+            <h:form>
+                <ui:include src="/views/steps-reservation/#{wizardBean.currentStep}.xhtml" />
+                <div class="paginacion">
+                    <h:commandButton class="boton" value="Anterior" action="#{wizardBean.previousStep}"
+                        rendered="#{wizardBean.showPrevious}" />
+                    <h:commandButton class="boton" value="Siguiente" action="#{wizardBean.nextStep}"
+                        rendered="#{wizardBean.showNext}" />
+                </div>
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>

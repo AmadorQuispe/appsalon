@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets" template="../../layouts/main.xhtml" xml:lang="es">
+    <ui:define name="content">
+        <h1 class="nombre-pagina">Login</h1>
+        <p class="descripcion-pagina">Inicia sesión con tus datos</p>
+        <h:messages class="alerta error"></h:messages>
+        <h:form>
+
+            <div class="campo">
+                <h:outputLabel value="Email" for="user" />
+                <h:inputText id="user" value="#{authController.user}" label="Correo" />
+            </div>
+            <div class="campo">
+                <h:outputLabel value="Contraseña" for="pwd" />
+                <h:inputSecret id="pwd" value="#{authController.pwd}" label="Contraseña" />
+            </div>
+
+
+            <h:commandButton value="Iniciar Sesión" action="#{authController.validateUsernamePassword}" class="boton" />
+        </h:form>
+
+        <div class="acciones">
+            <h:link outcome="/views/auth/signup" value="¿Aún no tienes una cuenta? Crear una" />
+
+        </div>
+
+    </ui:define>
+
+</ui:composition>

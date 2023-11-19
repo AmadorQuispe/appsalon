@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-15" ?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:composite="http://java.sun.com/jsf/composite"
+    xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<composite:interface componentType="com.amsoft.appsalon.components.TabView">
+    <composite:attribute name="activeTab" type="java.lang.String" required="true" />
+    <composite:attribute name="onTabChange" method-signature="void listener(java.lang.String)" />
+</composite:interface>
+
+<composite:implementation>
+    <nav class="tabs" role="tablist">
+        <ui:repeat var="tab" value="#{cc.tabs}">
+            <div role="presentation" class="#{cc.isTabActive(tab) ? 'actual':''}">
+                <h:commandLink value="#{tab.getTabLabel()}">
+                    <f:ajax listener="#{cc.makeTabActive(tab)}" render="#{cc.clientId}" />
+                </h:commandLink>
+            </div>
+
+        </ui:repeat>
+    </nav>
+</composite:implementation>
+
+</html>

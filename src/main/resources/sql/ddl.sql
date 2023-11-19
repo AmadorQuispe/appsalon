@@ -1,0 +1,73 @@
+select 'drop table if exists "' || tablename || '" cascade;' 
+  from pg_tables
+ where schemaname = 'public';
+
+CREATE FUNCTION update_updated_column() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+  BEGIN
+    NEW.updatedat = NOW();
+    RETURN NEW;
+  END;
+$$;
+																		
+
+CREATE TABLE USERS (
+	UID varchar(36) not null primary key default gen_random_uuid(),
+	EMAIL varchar(50) not null unique,
+	FIRSTNAME varchar(50) not null,
+	LASTNAME VARCHAR(100),
+	PHONE VARCHAR(15),
+	ISADMIN BOOLEAN DEFAULT FALSE,
+	PASSWORD VARCHAR(255) NOT NULL,
+	ENABLED BOOLEAN default true,
+	ISCONFIRM BOOLEAN  DEFAULT FALSE,
+	TOKENTEMP VARCHAR(222), 
+	createdat TIMESTAMP default CURRENT_TIMESTAMP,
+	updatedat TIMESTAMP default CURRENT_TIMESTAMP,
+	STATUS CHAR(1) DEFAULT 'A'  
+);
+CREATE TRIGGER t_users_updated BEFORE UPDATE ON 
+USERS FOR EACH ROW EXECUTE PROCEDURE update_updated_column();
+
+
+
+
+CREATE SEQUENCE services_sequence start 100 increment 1;
+CREATE TABLE SERVICES (
+	ID INT8 PRIMARY KEY DEFAULT NEXTVAL('services_sequence'),
+	NAME VARCHAR(80) NOT NULL,
+	DESCRIPTION VARCHAR(222),
+	PRICE DECIMAL(5,2) NOT NULL,
+	createdat TIMESTAMP default CURRENT_TIMESTAMP,
+	updatedat TIMESTAMP default CURRENT_TIMESTAMP,
+	STATUS CHAR(1) DEFAULT 'A' 
+);
+CREATE TRIGGER t_services_updated BEFORE UPDATE ON 
+SERVICES FOR EACH ROW EXECUTE PROCEDURE update_updated_column();
+
+CREATE SEQUENCE reservations_sequence start 100 increment 1;
+CREATE TABLE RESERVATIONS(
+	ID INT8 PRIMARY KEY DEFAULT NEXTVAL('reservations_sequence'),
+	RESERVEDDATE DATE NOT NULL,
+	RESERVEDTIME TIME NOT NULL,
+	USERUID VARCHAR(32) NOT NULL REFERENCES USERS(UID),
+	createdat TIMESTAMP default CURRENT_TIMESTAMP,
+	updatedat TIMESTAMP default CURRENT_TIMESTAMP,
+	STATUS CHAR(1) DEFAULT 'A' 
+);
+
+CREATE TRIGGER t_reservations_updated BEFORE UPDATE ON 
+RESERVATIONS FOR EACH ROW EXECUTE PROCEDURE update_updated_column();
+
+CREATE TABLE RESERVATIONSERVICES(
+	SERVICEID INT8 NOT NULL REFERENCES SERVICES(ID),
+	RESERVATIONID INT8 NOT NULL REFERENCES RESERVATIONS(ID),
+	PRIMARY KEY(SERVICEID,RESERVATIONID)
+);
+
+
+
+
+
+

@@ -1,0 +1,28 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets" template="../../layouts/main.xhtml" xml:lang="es">
+    <ui:define name="content">
+        <h1 class="nombre-pagina">Servicios</h1>
+        <p class="descripcion-pagina">Administración de Servicios</p>
+        <ui:include src="/template/menu-admin.xhtml" />
+
+        <ul class="servicios">
+            <ui:repeat var="service" value="#{serviceController.allServices()}">
+                <li>
+                    <p>Nombre: <span>#{service.name}</span> </p>
+                    <p>Precio: <span>#{service.price}</span> </p>
+                    <div class="acciones">
+                        <h:form>
+                            <h:commandButton value="Actualizar" action="#{serviceController.editService(service)}"
+                                class="boton" />
+                        </h:form>
+                        <h:form>
+                            <h:commandButton value="Eliminar" action="#{serviceController.inactiveService(service.id)}"
+                                class="boton-eliminar" />
+                        </h:form>
+                    </div>
+                </li>
+            </ui:repeat>
+        </ul>
+    </ui:define>
+
+</ui:composition>
