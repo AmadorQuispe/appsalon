@@ -32,8 +32,6 @@ La aplicación implementa medidas básicas de seguridad, como el uso de un filtr
 ## Capturas de Pantalla
 
 
-![Captura de Pantalla 2](/screenshots/admin.png)
+![Captura de Pantalla 2](/screenshots/appsalon.gif)
 
-## Licencia
 
-Este proyecto está licenciado bajo la Licencia MIT - consulta el archivo [LICENSE](/LICENSE) para más detalles.
